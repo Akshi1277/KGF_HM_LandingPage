@@ -1,0 +1,480 @@
+"use client";
+import React, { useState } from 'react';
+import { X, Phone, Mail, MapPin, Bed, Wifi, Camera, Dumbbell, BookOpen, Shield, Moon, Utensils, Check } from 'lucide-react';
+import Image from 'next/image';
+import { User, Home, MessageSquare, Send } from 'lucide-react';
+
+const Landing = () => {
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    roomType: '5-bed',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_kgfhm',
+          template_id: 'template_ldslhji',
+          user_id: 'ax2q3-9OdvmlPEz67',
+          template_params: {
+            to_email: 'akshat.g10b14lkis@gmail.com',
+            from_name: formData.name,
+            from_email: formData.email,
+            phone: formData.phone,
+            room_type: formData.roomType,
+            message: formData.message,
+            reply_to: formData.email
+          }
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          roomType: '5-bed',
+          message: ''
+        });
+        setTimeout(() => {
+          setIsInquiryOpen(false);
+          setSubmitStatus(null);
+        }, 2000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const pricingPlans = [
+    { beds: 5, price: 4200, discount: '30%', finalPrice: 2940 },
+    { beds: 4, price: 4550, discount: '30%', finalPrice: 3185 },
+    { beds: 3, price: 4900, discount: '30%', finalPrice: 3430 }
+  ];
+
+  const features = [
+    { icon: Shield, text: 'Strict supervision of KGF representative' },
+    { icon: Bed, text: '75 Beds/18 Dormitory Rooms' },
+    { icon: BookOpen, text: 'Study Room/Library' },
+    { icon: Shield, text: 'Warden and Security Guard' },
+    { icon: Moon, text: 'Prayer Room' },
+    { icon: Wifi, text: 'High Speed Wifi' },
+    { icon: Dumbbell, text: 'Recreation Gym/Room' },
+    { icon: Camera, text: 'Complete CCTV Surveillance' },
+    { icon: Check, text: 'Ensuring Islamic Aesthetics' },
+    { icon: Check, text: 'Hygienic and Studious ambience' }
+  ];
+
+  const amenities = [
+    'Comfortable Single Beds',
+    'Cupboards',
+    'Washing machine',
+    'Electric hotplate',
+    'Fridge, Microwave oven',
+    'Bathroom geyser',
+    'Dining Hall',
+    'Electricity charges included in Rent'
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      {/* Navbar */}
+      <nav className="bg-white shadow-md fixed w-full top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <Image
+                src="/kgf_2.svg"
+                alt="Logo"
+                width={48}
+                height={48}
+                className="object-contain w-15 h-15 sm:w-16 sm:h-16"
+              />
+              <div>
+                <h1 className="text-base sm:text-xl font-bold text-gray-900">KGF Boys Hostel</h1>
+                <p className="text-[10px] sm:text-xs text-gray-600">Kokan Global Foundation</p>
+              </div>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#home" className="text-gray-700 hover:text-blue-600 transition">Home</a>
+              <a href="#features" className="text-gray-700 hover:text-blue-600 transition">Features</a>
+              <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Pricing</a>
+              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
+            </div>
+            <button
+              onClick={() => setIsInquiryOpen(true)}
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-sm sm:text-base"
+            >
+              Inquiry Now
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="pt-20 sm:pt-24 pb-8 sm:pb-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
+            <div>
+              <div className="inline-block bg-red-100 text-red-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+                Grand Opening - 30% Discount!
+              </div>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
+                KGF Boys Hostel <span className="text-blue-600">For Students At Panvel</span>
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6">
+                Starting From: <span className="text-green-600 font-bold">1st October 2025</span>
+              </p>
+              <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8">
+                Book Your Seat Now at Kokan Global Foundation's premium hostel facility with modern amenities and Islamic aesthetics.
+              </p>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+                <button
+                  onClick={() => setIsInquiryOpen(true)}
+                  className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 shadow-lg w-full sm:w-auto"
+                >
+                  Book Your Seat Now
+                </button>
+                <a
+                  href="#pricing"
+                  className="bg-white text-blue-600 border-2 border-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-50 transition text-center w-full sm:w-auto"
+                >
+                  View Pricing
+                </a>
+              </div>
+            </div>
+            <div className="relative mt-6 sm:mt-0">
+              <div className="bg-gradient-to-br from-blue-600 to-green-500 rounded-2xl p-4 sm:p-8 shadow-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800"
+                  alt="KGF Hostel"
+                  className="rounded-lg shadow-lg w-full"
+                />
+                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-red-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold text-xs sm:text-base">
+                  Limited Time Offer!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-12 sm:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Hostel Salient Features</h3>
+            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-green-500 mx-auto"></div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-blue-50 to-green-50 p-5 sm:p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:scale-105"
+              >
+                <feature.icon className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mb-3 sm:mb-4" />
+                <p className="text-gray-800 font-medium text-sm sm:text-base">{feature.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Amenities Section */}
+      <section className="py-12 sm:py-16 bg-gradient-to-br from-green-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Fully Furnished Hostel</h3>
+            <p className="text-lg sm:text-xl text-gray-600">Everything you need for comfortable living</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            {amenities.map((amenity, index) => (
+              <div
+                key={index}
+                className="bg-white p-3 sm:p-4 rounded-lg shadow-md flex items-center space-x-3"
+              >
+                <Check className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 flex-shrink-0" />
+                <span className="text-gray-800 text-sm sm:text-base">{amenity}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-12 sm:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Special Opening Discount</h3>
+            <p className="text-base sm:text-xl text-gray-600">30% off on your first year - First come, first served!</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {pricingPlans.map((plan, index) => (
+              <div
+                key={index}
+                className={`rounded-2xl p-6 sm:p-8 shadow-xl transform hover:scale-105 transition ${
+                  index === 1 ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white md:scale-105' : 'bg-white border-2 border-blue-200'
+                }`}
+              >
+                {index === 1 && (
+                  <div className="bg-red-600 text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold inline-block mb-3 sm:mb-4">
+                    Most Popular
+                  </div>
+                )}
+                <h4 className={`text-2xl sm:text-3xl font-bold mb-2 ${index === 1 ? 'text-white' : 'text-gray-900'}`}>
+                  {plan.beds} Bed Room
+                </h4>
+                <div className="mb-4">
+                  <span className={`text-xl sm:text-2xl line-through ${index === 1 ? 'text-blue-200' : 'text-gray-400'}`}>
+                    ₹{plan.price}
+                  </span>
+                  <div className="flex items-baseline space-x-2">
+                    <span className={`text-4xl sm:text-5xl font-bold ${index === 1 ? 'text-white' : 'text-blue-600'}`}>
+                      ₹{plan.finalPrice}
+                    </span>
+                    <span className={`text-sm sm:text-base ${index === 1 ? 'text-blue-100' : 'text-gray-600'}`}>/month</span>
+                  </div>
+                  <div className={`mt-2 px-3 py-1 rounded-full inline-block text-sm ${index === 1 ? 'bg-green-500' : 'bg-green-100 text-green-700'}`}>
+                    Save {plan.discount}
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsInquiryOpen(true)}
+                  className={`w-full py-3 rounded-lg font-semibold transition text-sm sm:text-base ${
+                    index === 1
+                      ? 'bg-white text-blue-600 hover:bg-blue-50'
+                      : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800'
+                  }`}
+                >
+                  Book Now
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-12 sm:py-16 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Get In Touch</h3>
+            <p className="text-lg sm:text-xl text-blue-200">We're here to answer your questions</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="text-center">
+              <Phone className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 text-green-400" />
+              <h4 className="text-lg sm:text-xl font-semibold mb-2">Call Us</h4>
+              <p className="text-blue-200 text-sm sm:text-base">+91 75100 12346</p>
+              <p className="text-blue-200 text-sm sm:text-base">+91 73900 12346</p>
+            </div>
+            <div className="text-center">
+              <Mail className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 text-green-400" />
+              <h4 className="text-lg sm:text-xl font-semibold mb-2">Email Us</h4>
+              <p className="text-blue-200 text-sm sm:text-base break-all">akshat.g10b14kis@gmail.com</p>
+            </div>
+            <div className="text-center">
+              <MapPin className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 text-green-400" />
+              <h4 className="text-lg sm:text-xl font-semibold mb-2">Visit Us</h4>
+              <p className="text-blue-200 text-sm sm:text-base">Panvel, Maharashtra</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-6 sm:py-8">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <p className="text-gray-400 mb-2 text-sm sm:text-base">Let's Join Hands..... Form Unity, Form Strength</p>
+          <p className="text-gray-500 text-xs sm:text-sm">© 2025 Kokan Global Foundation (KGF). All rights reserved.</p>
+        </div>
+      </footer>
+
+      {/* Inquiry Modal */}
+      {isInquiryOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
+          <div className="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full shadow-2xl relative max-h-[95vh] overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 sm:p-8 rounded-t-2xl sm:rounded-t-3xl relative">
+              <button
+                onClick={() => setIsInquiryOpen(false)}
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-white/80 hover:text-white transition-colors"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+              <h3 className="text-2xl sm:text-3xl font-bold mb-2">Get in Touch</h3>
+              <p className="text-blue-100 text-sm sm:text-base">Fill out the form and we'll get back to you shortly</p>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="p-4 sm:p-8 space-y-4 sm:space-y-6">
+              {/* Name Field */}
+              <div className="group">
+                <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
+                  Full Name
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 pl-10 sm:pl-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm sm:text-base"
+                    placeholder="John Doe"
+                  />
+                  <User className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 sm:left-4 top-1/2 -translate-y-1/2" />
+                </div>
+              </div>
+
+              {/* Email Field */}
+              <div className="group">
+                <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 pl-10 sm:pl-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm sm:text-base"
+                    placeholder="john@example.com"
+                  />
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 sm:left-4 top-1/2 -translate-y-1/2" />
+                </div>
+              </div>
+
+              {/* Phone Field */}
+              <div className="group">
+                <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
+                  Phone Number
+                </label>
+                <div className="relative">
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 pl-10 sm:pl-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none text-sm sm:text-base"
+                    placeholder="+91 XXXXX XXXXX"
+                  />
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 sm:left-4 top-1/2 -translate-y-1/2" />
+                </div>
+              </div>
+
+              {/* Room Type Field */}
+              <div className="group">
+                <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
+                  Room Type
+                </label>
+                <div className="relative">
+                  <select
+                    name="roomType"
+                    value={formData.roomType}
+                    onChange={handleInputChange}
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 pl-10 sm:pl-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none appearance-none bg-white cursor-pointer text-sm sm:text-base"
+                  >
+                    <option value="5-bed">5 Bed Room - ₹2940/month</option>
+                    <option value="4-bed">4 Bed Room - ₹3185/month</option>
+                    <option value="3-bed">3 Bed Room - ₹3430/month</option>
+                  </select>
+                  <Home className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Message Field */}
+              <div className="group">
+                <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
+                  Message <span className="text-gray-400 font-normal">(Optional)</span>
+                </label>
+                <div className="relative">
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows="4"
+                    className="w-full px-3 sm:px-4 py-3 sm:py-3.5 pl-10 sm:pl-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none resize-none text-sm sm:text-base"
+                    placeholder="Any specific requirements or questions?"
+                  ></textarea>
+                  <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 sm:left-4 top-4" />
+                </div>
+              </div>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="bg-green-50 border-2 border-green-200 text-green-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl flex items-center gap-2 sm:gap-3 text-sm sm:text-base">
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <span>Inquiry submitted successfully! We'll contact you soon.</span>
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="bg-red-50 border-2 border-red-200 text-red-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl flex items-center gap-2 sm:gap-3 text-sm sm:text-base">
+                  <X className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <span>Failed to submit. Please try again or call us directly.</span>
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 sm:py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base"
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    Submit Inquiry
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Landing;
