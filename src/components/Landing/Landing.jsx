@@ -6,6 +6,7 @@ import { User, Home, MessageSquare, Send } from 'lucide-react';
 
 const Landing = () => {
   const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,28 +30,26 @@ const Landing = () => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      // Using Formsubmit - no signup required, no branding
+      const formDataObj = new FormData();
+      formDataObj.append('name', formData.name);
+      formDataObj.append('email', formData.email);
+      formDataObj.append('phone', formData.phone);
+      formDataObj.append('room_type', formData.roomType);
+      formDataObj.append('message', formData.message);
+      formDataObj.append('_subject', 'New Hostel Inquiry from KGF Website');
+      formDataObj.append('_captcha', 'false'); // Disable captcha
+      formDataObj.append('_template', 'table'); // Nice table format
+
+      // Replace 'akshat.g10b14kis' with your email (remove @gmail.com part)
+      const response = await fetch('https://formsubmit.co/ajax/kgf@gmail.com', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service_id: 'service_kgfhm',
-          template_id: 'template_ldslhji',
-          user_id: 'ax2q3-9OdvmlPEz67',
-          template_params: {
-            to_email: 'akshat.g10b14lkis@gmail.com',
-            from_name: formData.name,
-            from_email: formData.email,
-            phone: formData.phone,
-            room_type: formData.roomType,
-            message: formData.message,
-            reply_to: formData.email
-          }
-        })
+        body: formDataObj
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         setSubmitStatus('success');
         setFormData({
           name: '',
@@ -65,6 +64,7 @@ const Landing = () => {
         }, 2000);
       } else {
         setSubmitStatus('error');
+        console.error('Formsubmit error:', result.message || 'Unknown error');
       }
     } catch (error) {
       console.error('Error sending email:', error);
@@ -114,9 +114,11 @@ const Landing = () => {
               <Image
                 src="/kgf_2.svg"
                 alt="Logo"
-                width={48}
-                height={48}
-                className="object-contain w-15 h-15 sm:w-16 sm:h-16"
+                width={64}
+                height={64}
+                className="object-contain w-12 h-12 sm:w-16 sm:h-16"
+                priority
+                quality={100}
               />
               <div>
                 <h1 className="text-base sm:text-xl font-bold text-gray-900">KGF Boys Hostel</h1>
@@ -129,12 +131,20 @@ const Landing = () => {
               <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Pricing</a>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
             </div>
-            <button
-              onClick={() => setIsInquiryOpen(true)}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-sm sm:text-base"
-            >
-              Inquiry Now
-            </button>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <button
+                onClick={() => setIsLoginOpen(true)}
+                className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 text-sm sm:text-base"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => setIsInquiryOpen(true)}
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-sm sm:text-base"
+              >
+                Inquiry Now
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -240,9 +250,8 @@ const Landing = () => {
             {pricingPlans.map((plan, index) => (
               <div
                 key={index}
-                className={`rounded-2xl p-6 sm:p-8 shadow-xl transform hover:scale-105 transition ${
-                  index === 1 ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white md:scale-105' : 'bg-white border-2 border-blue-200'
-                }`}
+                className={`rounded-2xl p-6 sm:p-8 shadow-xl transform hover:scale-105 transition ${index === 1 ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white md:scale-105' : 'bg-white border-2 border-blue-200'
+                  }`}
               >
                 {index === 1 && (
                   <div className="bg-red-600 text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold inline-block mb-3 sm:mb-4">
@@ -268,11 +277,10 @@ const Landing = () => {
                 </div>
                 <button
                   onClick={() => setIsInquiryOpen(true)}
-                  className={`w-full py-3 rounded-lg font-semibold transition text-sm sm:text-base ${
-                    index === 1
+                  className={`w-full py-3 rounded-lg font-semibold transition text-sm sm:text-base ${index === 1
                       ? 'bg-white text-blue-600 hover:bg-blue-50'
                       : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800'
-                  }`}
+                    }`}
                 >
                   Book Now
                 </button>
@@ -290,22 +298,27 @@ const Landing = () => {
             <p className="text-lg sm:text-xl text-blue-200">We're here to answer your questions</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <div className="text-center">
+            <a href="tel:+917510012346" className="text-center block hover:transform hover:scale-105 transition">
               <Phone className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 text-green-400" />
               <h4 className="text-lg sm:text-xl font-semibold mb-2">Call Us</h4>
-              <p className="text-blue-200 text-sm sm:text-base">+91 75100 12346</p>
-              <p className="text-blue-200 text-sm sm:text-base">+91 73900 12346</p>
-            </div>
-            <div className="text-center">
+              <p className="text-blue-200 text-sm sm:text-base hover:text-white transition">+91 75100 12346</p>
+              <p className="text-blue-200 text-sm sm:text-base hover:text-white transition">+91 73900 12346</p>
+            </a>
+            <a href="mailto:kgf@gmail.com" className="text-center block hover:transform hover:scale-105 transition">
               <Mail className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 text-green-400" />
               <h4 className="text-lg sm:text-xl font-semibold mb-2">Email Us</h4>
-              <p className="text-blue-200 text-sm sm:text-base break-all">akshat.g10b14kis@gmail.com</p>
-            </div>
-            <div className="text-center">
+              <p className="text-blue-200 text-sm sm:text-base break-all hover:text-white transition">kgf@gmail.com</p>
+            </a>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Panvel,+Maharashtra,+India"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-center block hover:transform hover:scale-105 transition"
+            >
               <MapPin className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4 text-green-400" />
               <h4 className="text-lg sm:text-xl font-semibold mb-2">Visit Us</h4>
-              <p className="text-blue-200 text-sm sm:text-base">Panvel, Maharashtra</p>
-            </div>
+              <p className="text-blue-200 text-sm sm:text-base hover:text-white transition">Panvel, Maharashtra</p>
+            </a>
           </div>
         </div>
       </section>
@@ -473,6 +486,69 @@ const Landing = () => {
           </div>
         </div>
       )}
+
+{/* Login Modal */}
+{isLoginOpen && (
+  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div className="bg-white rounded-3xl max-w-2xl w-full shadow-2xl relative p-8">
+      <button
+        onClick={() => setIsLoginOpen(false)}
+        className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors"
+      >
+        <X className="w-6 h-6" />
+      </button>
+      
+      <h3 className="text-3xl font-bold text-gray-900 mb-2 text-center">Login</h3>
+      <p className="text-gray-600 mb-8 text-center">Select your login type</p>
+      
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Parent Login Card */}
+        <a
+          href="https://kgf-hm-parent.nexcorealliance.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200 hover:border-blue-400 transition-all hover:shadow-xl transform hover:scale-105"
+        >
+          <div className="text-center">
+            <div className="w-24 h-24 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+              <User className="w-12 h-12 text-white" />
+            </div>
+            <h4 className="text-2xl font-bold text-gray-900 mb-2">Parent Login</h4>
+            <p className="text-gray-600 text-sm">Access parent portal</p>
+            <div className="mt-4 inline-flex items-center text-blue-600 font-semibold">
+              Login Now
+              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        {/* Student Login Card */}
+        <a
+          href="https://kgf-hm-student.nexcorealliance.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl transform hover:scale-105"
+        >
+          <div className="text-center">
+            <div className="w-24 h-24 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center">
+              <BookOpen className="w-12 h-12 text-white" />
+            </div>
+            <h4 className="text-2xl font-bold text-gray-900 mb-2">Student Login</h4>
+            <p className="text-gray-600 text-sm">Access student portal</p>
+            <div className="mt-4 inline-flex items-center text-green-600 font-semibold">
+              Login Now
+              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 };
