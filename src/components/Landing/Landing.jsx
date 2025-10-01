@@ -75,7 +75,7 @@ const Landing = () => {
   };
 
   const pricingPlans = [
-    { beds: 5, price: 5000, discount: '30%', finalPrice: 4200 },
+    { beds: 5, price: 6000, discount: '30%', finalPrice: 4200 },
     { beds: 4, price: 6500, discount: '30%', finalPrice: 4550 },
     { beds: 3, price: 7000, discount: '30%', finalPrice: 4900 }
   ];
