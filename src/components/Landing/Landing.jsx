@@ -268,19 +268,19 @@ const Landing = () => {
                   {plan.beds} Bed Room
                 </h4>
                 <div className="mb-4">
-                  <span className={`text-xl sm:text-2xl line-through ${index === 1 ? 'text-blue-200' : 'text-gray-400'}`}>
-                    ₹{plan.price}
-                  </span>
-                  <div className="flex items-baseline space-x-2">
-                    <span className={`text-4xl sm:text-5xl font-bold ${index === 1 ? 'text-white' : 'text-blue-600'}`}>
-                      ₹{plan.finalPrice}
-                    </span>
-                    <span className={`text-sm sm:text-base ${index === 1 ? 'text-blue-100' : 'text-gray-600'}`}>/month</span>
-                  </div>
-                  <div className={`mt-2 px-3 py-1 rounded-full inline-block text-sm ${index === 1 ? 'bg-green-500' : 'bg-green-100 text-green-700'}`}>
-                    Save {plan.discount}
-                  </div>
-                </div>
+  <span className={`text-xl sm:text-2xl line-through ${index === 1 ? 'text-blue-200' : 'text-gray-400'}`}>
+    ₹{plan.price}
+  </span>
+  <div className="flex items-baseline space-x-2">
+    <span className={`text-4xl sm:text-5xl font-bold ${index === 1 ? 'text-white' : 'text-blue-600'}`}>
+      ₹{plan.finalPrice}
+    </span>
+    <span className={`text-sm sm:text-base ${index === 1 ? 'text-blue-100' : 'text-gray-600'}`}>per bed/month</span>
+  </div>
+  <div className={`mt-2 px-3 py-1 rounded-full inline-block text-sm ${index === 1 ? 'bg-green-500' : 'bg-green-100 text-green-700'}`}>
+    Save {plan.discount}
+  </div>
+</div>
                 <button
                   onClick={() => setIsInquiryOpen(true)}
                   className={`w-full py-3 rounded-lg font-semibold transition text-sm sm:text-base ${index === 1
@@ -424,9 +424,9 @@ const Landing = () => {
                     onChange={handleInputChange}
                     className="w-full px-3 sm:px-4 py-3 sm:py-3.5 pl-10 sm:pl-12 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all outline-none appearance-none bg-white cursor-pointer text-sm sm:text-base"
                   >
-                    <option value="5-bed">5 Bed Room - ₹2940/month</option>
-                    <option value="4-bed">4 Bed Room - ₹3185/month</option>
-                    <option value="3-bed">3 Bed Room - ₹3430/month</option>
+                    <option value="5-bed">5 Bed Room - ₹4200/month</option>
+                    <option value="4-bed">4 Bed Room - ₹4550/month</option>
+                    <option value="3-bed">3 Bed Room - ₹4900/month</option>
                   </select>
                   <Home className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
