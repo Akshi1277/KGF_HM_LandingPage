@@ -510,7 +510,7 @@ const Landing = () => {
       <div className="grid md:grid-cols-2 gap-6">
         {/* Parent Login Card */}
         <a
-          href="https://kgf-hm-parent.nexcorealliance.com"
+          href="https://kokanglobal.org/parent"
           target="_blank"
           rel="noopener noreferrer"
           className="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200 hover:border-blue-400 transition-all hover:shadow-xl transform hover:scale-105"
