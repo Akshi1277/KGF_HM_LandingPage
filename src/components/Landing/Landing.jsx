@@ -75,9 +75,9 @@ const Landing = () => {
   };
 
   const pricingPlans = [
-    { beds: 5, price: 4200, discount: '30%', finalPrice: 2940 },
-    { beds: 4, price: 4550, discount: '30%', finalPrice: 3185 },
-    { beds: 3, price: 4900, discount: '30%', finalPrice: 3430 }
+    { beds: 5, price: 5000, discount: '30%', finalPrice: 4200 },
+    { beds: 4, price: 6500, discount: '30%', finalPrice: 4550 },
+    { beds: 3, price: 7000, discount: '30%', finalPrice: 4900 }
   ];
 
   const features = [
@@ -107,47 +107,53 @@ const Landing = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Navbar */}
-      <nav className="bg-white shadow-md fixed w-full top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              <Image
-                src="/kgf_2.svg"
-                alt="Logo"
-                width={64}
-                height={64}
-                className="object-contain w-12 h-12 sm:w-16 sm:h-16"
-                priority
-                quality={100}
-              />
-              <div>
-                <h1 className="text-base sm:text-xl font-bold text-gray-900">KGF Boys Hostel</h1>
-                <p className="text-[10px] sm:text-xs text-gray-600">Kokan Global Foundation</p>
-              </div>
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 transition">Home</a>
-              <a href="#features" className="text-gray-700 hover:text-blue-600 transition">Features</a>
-              <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Pricing</a>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
-            </div>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <button
-                onClick={() => setIsLoginOpen(true)}
-                className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 text-sm sm:text-base"
-              >
-                Login
-              </button>
-              <button
-                onClick={() => setIsInquiryOpen(true)}
-                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-sm sm:text-base"
-              >
-                Inquiry Now
-              </button>
-            </div>
+<nav className="bg-white shadow-md fixed w-full top-0 z-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex justify-between items-center h-20">
+      <div className="flex items-center space-x-3 sm:space-x-4">
+        {/* Logo */}
+        <Image
+          src="/kgf_2.svg"
+          alt="KGF Logo"
+          width={64}
+          height={64}
+          className="object-contain w-14 h-14 sm:w-16 sm:h-16"
+          priority
+        />
+        {/* Text Branding */}
+        <div className="flex flex-col">
+          <div className="flex items-baseline space-x-2">
+            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 via-green-600 to-blue-800 bg-clip-text text-transparent">
+              KGF
+            </span>
+            <span className="text-base sm:text-lg font-bold text-gray-900">Boys Hostel</span>
           </div>
+          <p className="text-[10px] sm:text-xs text-gray-600 leading-tight">Kokan Global Foundation</p>
         </div>
-      </nav>
+      </div>
+      <div className="hidden md:flex space-x-8">
+        <a href="#home" className="text-gray-700 hover:text-blue-600 transition">Home</a>
+        <a href="#features" className="text-gray-700 hover:text-blue-600 transition">Features</a>
+        <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Pricing</a>
+        <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
+      </div>
+      <div className="flex items-center gap-2 sm:gap-3">
+        <button
+          onClick={() => setIsLoginOpen(true)}
+          className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 text-sm sm:text-base"
+        >
+          Login
+        </button>
+        <button
+          onClick={() => setIsInquiryOpen(true)}
+          className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-sm sm:text-base"
+        >
+          Inquiry Now
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
 
       {/* Hero Section */}
       <section id="home" className="pt-20 sm:pt-24 pb-8 sm:pb-12 px-4">
@@ -310,7 +316,7 @@ const Landing = () => {
               <p className="text-blue-200 text-sm sm:text-base break-all hover:text-white transition">kgf@gmail.com</p>
             </a>
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Panvel,+Maharashtra,+India"
+              href="https://maps.app.goo.gl/KowWiWN1GAkK4kLe6"
               target="_blank"
               rel="noopener noreferrer"
               className="text-center block hover:transform hover:scale-105 transition"
