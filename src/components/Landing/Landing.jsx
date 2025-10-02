@@ -496,7 +496,7 @@ const Landing = () => {
 {/* Login Modal */}
 {isLoginOpen && (
   <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div className="bg-white rounded-3xl max-w-2xl w-full shadow-2xl relative p-8">
+    <div className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl relative p-8">
       <button
         onClick={() => setIsLoginOpen(false)}
         className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors"
@@ -507,7 +507,7 @@ const Landing = () => {
       <h3 className="text-3xl font-bold text-gray-900 mb-2 text-center">Login</h3>
       <p className="text-gray-600 mb-8 text-center">Select your login type</p>
       
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-3 gap-6">
         {/* Parent Login Card */}
         <a
           href="https://kokanglobal.org/parent"
@@ -551,6 +551,28 @@ const Landing = () => {
             </div>
           </div>
         </a>
+
+        {/* Warden Login Card */}
+
+  <a href="https://kokanglobal.org/warden"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-xl transform hover:scale-105"
+>
+  <div className="text-center">
+    <div className="w-24 h-24 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center">
+      <Shield className="w-12 h-12 text-white" />
+    </div>
+    <h4 className="text-2xl font-bold text-gray-900 mb-2">Warden Login</h4>
+    <p className="text-gray-600 text-sm">Access warden portal</p>
+    <div className="mt-4 inline-flex items-center text-purple-600 font-semibold">
+      Login Now
+      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </div>
+</a>
       </div>
     </div>
   </div>
