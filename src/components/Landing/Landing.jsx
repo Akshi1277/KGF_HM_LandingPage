@@ -532,7 +532,7 @@ const Landing = () => {
 
         {/* Student Login Card */}
         <a
-          href="https://kgf-hm-student.nexcorealliance.com"
+          href="https://kokanglobal.org/student"
           target="_blank"
           rel="noopener noreferrer"
           className="group relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl transform hover:scale-105"
