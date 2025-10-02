@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { X, Phone, Mail, MapPin, Bed, Wifi, Camera, Dumbbell, BookOpen, Shield, Moon, Utensils, Check } from 'lucide-react';
+import { X, Phone, Mail, MapPin, Bed, Wifi, Camera, Dumbbell, BookOpen, Shield, Moon, Utensils, Check, Play } from 'lucide-react';
 import Image from 'next/image';
 import { User, Home, MessageSquare, Send } from 'lucide-react';
 
@@ -30,7 +30,6 @@ const Landing = () => {
     setSubmitStatus(null);
 
     try {
-      // Using Formsubmit - no signup required, no branding
       const formDataObj = new FormData();
       formDataObj.append('name', formData.name);
       formDataObj.append('email', formData.email);
@@ -38,10 +37,9 @@ const Landing = () => {
       formDataObj.append('room_type', formData.roomType);
       formDataObj.append('message', formData.message);
       formDataObj.append('_subject', 'New Hostel Inquiry from KGF Website');
-      formDataObj.append('_captcha', 'false'); // Disable captcha
-      formDataObj.append('_template', 'table'); // Nice table format
+      formDataObj.append('_captcha', 'false');
+      formDataObj.append('_template', 'table');
 
-      // Replace 'akshat.g10b14kis' with your email (remove @gmail.com part)
       const response = await fetch('https://formsubmit.co/ajax/kgf@gmail.com', {
         method: 'POST',
         body: formDataObj
@@ -104,56 +102,78 @@ const Landing = () => {
     'Electricity charges included in Rent'
   ];
 
+  const tutorials = [
+    {
+      title: 'Parent Panel Tutorial (English)',
+      description: 'Learn how to use the parent portal',
+      videoUrl: 'https://drive.google.com/file/d/1XUheT8pYhMyf6NUOf_8fuEgaDU0rt9kn/view?usp=drive_link',
+      language: 'English',
+      color: 'blue'
+    },
+    {
+      title: 'Parent Panel Tutorial (Hindi)',
+      description: 'Learn how to use the parent portal(hindi)',
+      videoUrl: 'https://drive.google.com/file/d/1lJ947j5cO2m5mz8ZRpzrrObASpDqd-PF/view?usp=drive_link',
+      language: 'Hindi',
+      color: 'indigo'
+    },
+    {
+      title: 'Student Panel Tutorial (English)',
+      description: 'Learn how to use the student portal',
+      videoUrl: 'https://drive.google.com/file/d/1JUJ9t_qox5nwKOPbH0MIZW5p5FV9Gy6u/view?usp=drive_link',
+      language: 'English',
+      color: 'green'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Navbar */}
-<nav className="bg-white shadow-md fixed w-full top-0 z-50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex justify-between items-center h-20">
-      <div className="flex items-center space-x-3 sm:space-x-4">
-        {/* Logo */}
-        <Image
-          src="/kgf_2.svg"
-          alt="KGF Logo"
-          width={64}
-          height={64}
-          className="object-contain w-14 h-14 sm:w-16 sm:h-16"
-          priority
-        />
-        {/* Text Branding */}
-        <div className="flex flex-col">
-          <div className="flex items-baseline space-x-2">
-            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 via-green-600 to-blue-800 bg-clip-text text-transparent">
-              KGF
-            </span>
-            <span className="text-base sm:text-lg font-bold text-gray-900">Boys Hostel</span>
+      <nav className="bg-white shadow-md fixed w-full top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <Image
+                src="/kgf_2.svg"
+                alt="KGF Logo"
+                width={64}
+                height={64}
+                className="object-contain w-14 h-14 sm:w-16 sm:h-16"
+                priority
+              />
+              <div className="flex flex-col">
+                <div className="flex items-baseline space-x-2">
+                  <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 via-green-600 to-blue-800 bg-clip-text text-transparent">
+                    KGF
+                  </span>
+                  <span className="text-base sm:text-lg font-bold text-gray-900">Boys Hostel</span>
+                </div>
+                <p className="text-[10px] sm:text-xs text-gray-600 leading-tight">Kokan Global Foundation</p>
+              </div>
+            </div>
+            <div className="hidden md:flex space-x-8">
+              <a href="#home" className="text-gray-700 hover:text-blue-600 transition">Home</a>
+              <a href="#features" className="text-gray-700 hover:text-blue-600 transition">Features</a>
+              <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Pricing</a>
+              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
+            </div>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <button
+                onClick={() => setIsLoginOpen(true)}
+                className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 text-sm sm:text-base"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => setIsInquiryOpen(true)}
+                className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-sm sm:text-base"
+              >
+                Inquiry Now
+              </button>
+            </div>
           </div>
-          <p className="text-[10px] sm:text-xs text-gray-600 leading-tight">Kokan Global Foundation</p>
         </div>
-      </div>
-      <div className="hidden md:flex space-x-8">
-        <a href="#home" className="text-gray-700 hover:text-blue-600 transition">Home</a>
-        <a href="#features" className="text-gray-700 hover:text-blue-600 transition">Features</a>
-        <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Pricing</a>
-        <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
-      </div>
-      <div className="flex items-center gap-2 sm:gap-3">
-        <button
-          onClick={() => setIsLoginOpen(true)}
-          className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 text-sm sm:text-base"
-        >
-          Login
-        </button>
-        <button
-          onClick={() => setIsInquiryOpen(true)}
-          className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-sm sm:text-base"
-        >
-          Inquiry Now
-        </button>
-      </div>
-    </div>
-  </div>
-</nav>
+      </nav>
 
       {/* Hero Section */}
       <section id="home" className="pt-20 sm:pt-24 pb-8 sm:pb-12 px-4">
@@ -179,7 +199,7 @@ const Landing = () => {
                 >
                   Book Your Seat Now
                 </button>
-                <a
+               <a 
                   href="#pricing"
                   className="bg-white text-blue-600 border-2 border-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-50 transition text-center w-full sm:w-auto"
                 >
@@ -256,8 +276,9 @@ const Landing = () => {
             {pricingPlans.map((plan, index) => (
               <div
                 key={index}
-                className={`rounded-2xl p-6 sm:p-8 shadow-xl transform hover:scale-105 transition ${index === 1 ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white md:scale-105' : 'bg-white border-2 border-blue-200'
-                  }`}
+                className={`rounded-2xl p-6 sm:p-8 shadow-xl transform hover:scale-105 transition ${
+                  index === 1 ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white md:scale-105' : 'bg-white border-2 border-blue-200'
+                }`}
               >
                 {index === 1 && (
                   <div className="bg-red-600 text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold inline-block mb-3 sm:mb-4">
@@ -268,25 +289,26 @@ const Landing = () => {
                   {plan.beds} Bed Room
                 </h4>
                 <div className="mb-4">
-  <span className={`text-xl sm:text-2xl line-through ${index === 1 ? 'text-blue-200' : 'text-gray-400'}`}>
-    ₹{plan.price}
-  </span>
-  <div className="flex items-baseline space-x-2">
-    <span className={`text-4xl sm:text-5xl font-bold ${index === 1 ? 'text-white' : 'text-blue-600'}`}>
-      ₹{plan.finalPrice}
-    </span>
-    <span className={`text-sm sm:text-base ${index === 1 ? 'text-blue-100' : 'text-gray-600'}`}>per bed/month</span>
-  </div>
-  <div className={`mt-2 px-3 py-1 rounded-full inline-block text-sm ${index === 1 ? 'bg-green-500' : 'bg-green-100 text-green-700'}`}>
-    Save {plan.discount}
-  </div>
-</div>
+                  <span className={`text-xl sm:text-2xl line-through ${index === 1 ? 'text-blue-200' : 'text-gray-400'}`}>
+                    ₹{plan.price}
+                  </span>
+                  <div className="flex items-baseline space-x-2">
+                    <span className={`text-4xl sm:text-5xl font-bold ${index === 1 ? 'text-white' : 'text-blue-600'}`}>
+                      ₹{plan.finalPrice}
+                    </span>
+                    <span className={`text-sm sm:text-base ${index === 1 ? 'text-blue-100' : 'text-gray-600'}`}>per bed/month</span>
+                  </div>
+                  <div className={`mt-2 px-3 py-1 rounded-full inline-block text-sm ${index === 1 ? 'bg-green-500' : 'bg-green-100 text-green-700'}`}>
+                    Save {plan.discount}
+                  </div>
+                </div>
                 <button
                   onClick={() => setIsInquiryOpen(true)}
-                  className={`w-full py-3 rounded-lg font-semibold transition text-sm sm:text-base ${index === 1
+                  className={`w-full py-3 rounded-lg font-semibold transition text-sm sm:text-base ${
+                    index === 1
                       ? 'bg-white text-blue-600 hover:bg-blue-50'
                       : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800'
-                    }`}
+                  }`}
                 >
                   Book Now
                 </button>
@@ -329,6 +351,55 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Video Tutorials Section */}
+      <section className="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Portal Tutorials</h3>
+            <p className="text-lg sm:text-xl text-gray-600">Watch our step-by-step guides to use the portal</p>
+            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-green-500 mx-auto mt-4"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            {tutorials.map((tutorial, index) => (
+              <div
+                key={index}
+                className={`bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300 border-2 ${
+                  tutorial.color === 'blue' ? 'border-blue-200 hover:border-blue-400' :
+                  tutorial.color === 'indigo' ? 'border-indigo-200 hover:border-indigo-400' :
+                  'border-green-200 hover:border-green-400'
+                }`}
+              >
+                <div className={`p-4 sm:p-6 bg-gradient-to-r ${
+                  tutorial.color === 'blue' ? 'from-blue-600 to-blue-700' :
+                  tutorial.color === 'indigo' ? 'from-indigo-600 to-indigo-700' :
+                  'from-green-600 to-green-700'
+                } text-white`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="text-lg sm:text-xl font-bold">{tutorial.title}</h4>
+                    <Play className="w-6 h-6" />
+                  </div>
+                  <p className="text-sm text-white/90">{tutorial.description}</p>
+                  <div className="mt-3 inline-block bg-white/20 px-3 py-1 rounded-full text-xs font-semibold">
+                    {tutorial.language}
+                  </div>
+                </div>
+                
+                <div className="aspect-video bg-gray-900">
+                  <iframe
+                    src={tutorial.videoUrl}
+                    className="w-full h-full"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    title={tutorial.title}
+                  ></iframe>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-6 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -341,7 +412,6 @@ const Landing = () => {
       {isInquiryOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
           <div className="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full shadow-2xl relative max-h-[95vh] overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            {/* Header */}
             <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 sm:p-8 rounded-t-2xl sm:rounded-t-3xl relative">
               <button
                 onClick={() => setIsInquiryOpen(false)}
@@ -353,9 +423,7 @@ const Landing = () => {
               <p className="text-blue-100 text-sm sm:text-base">Fill out the form and we'll get back to you shortly</p>
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="p-4 sm:p-8 space-y-4 sm:space-y-6">
-              {/* Name Field */}
               <div className="group">
                 <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
                   Full Name
@@ -374,7 +442,6 @@ const Landing = () => {
                 </div>
               </div>
 
-              {/* Email Field */}
               <div className="group">
                 <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
                   Email Address
@@ -393,7 +460,6 @@ const Landing = () => {
                 </div>
               </div>
 
-              {/* Phone Field */}
               <div className="group">
                 <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
                   Phone Number
@@ -412,7 +478,6 @@ const Landing = () => {
                 </div>
               </div>
 
-              {/* Room Type Field */}
               <div className="group">
                 <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
                   Room Type
@@ -435,7 +500,6 @@ const Landing = () => {
                 </div>
               </div>
 
-              {/* Message Field */}
               <div className="group">
                 <label className="block text-gray-700 font-semibold mb-2 text-xs sm:text-sm uppercase tracking-wide">
                   Message <span className="text-gray-400 font-normal">(Optional)</span>
@@ -453,7 +517,6 @@ const Landing = () => {
                 </div>
               </div>
 
-              {/* Status Messages */}
               {submitStatus === 'success' && (
                 <div className="bg-green-50 border-2 border-green-200 text-green-700 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl flex items-center gap-2 sm:gap-3 text-sm sm:text-base">
                   <Check className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
@@ -467,7 +530,6 @@ const Landing = () => {
                 </div>
               )}
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -493,91 +555,89 @@ const Landing = () => {
         </div>
       )}
 
-{/* Login Modal */}
-{isLoginOpen && (
-  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl relative p-8">
-      <button
-        onClick={() => setIsLoginOpen(false)}
-        className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors"
-      >
-        <X className="w-6 h-6" />
-      </button>
-      
-      <h3 className="text-3xl font-bold text-gray-900 mb-2 text-center">Login</h3>
-      <p className="text-gray-600 mb-8 text-center">Select your login type</p>
-      
-      <div className="grid md:grid-cols-3 gap-6">
-        {/* Parent Login Card */}
-        <a
-          href="https://kokanglobal.org/parent"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200 hover:border-blue-400 transition-all hover:shadow-xl transform hover:scale-105"
-        >
-          <div className="text-center">
-            <div className="w-24 h-24 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
-              <User className="w-12 h-12 text-white" />
-            </div>
-            <h4 className="text-2xl font-bold text-gray-900 mb-2">Parent Login</h4>
-            <p className="text-gray-600 text-sm">Access parent portal</p>
-            <div className="mt-4 inline-flex items-center text-blue-600 font-semibold">
-              Login Now
-              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+      {/* Login Modal */}
+      {isLoginOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl relative p-8">
+            <button
+              onClick={() => setIsLoginOpen(false)}
+              className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <h3 className="text-3xl font-bold text-gray-900 mb-2 text-center">Login</h3>
+            <p className="text-gray-600 mb-8 text-center">Select your login type</p>
+            
+            <div className="grid md:grid-cols-3 gap-6">
+             <a 
+                href="https://kokanglobal.org/parent"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200 hover:border-blue-400 transition-all hover:shadow-xl transform hover:scale-105"
+              >
+                <div className="text-center">
+                  <div className="w-24 h-24 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+                    <User className="w-12 h-12 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-gray-900 mb-2">Parent Login</h4>
+                  <p className="text-gray-600 text-sm">Access parent portal</p>
+                  <div className="mt-4 inline-flex items-center text-blue-600 font-semibold">
+                    Login Now
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+
+             <a 
+                href="https://kokanglobal.org/student"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl transform hover:scale-105"
+              >
+                <div className="text-center">
+                  <div className="w-24 h-24 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center">
+                    <BookOpen className="w-12 h-12 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-gray-900 mb-2">Student Login</h4>
+                  <p className="text-gray-600 text-sm">Access student portal</p>
+                  <div className="mt-4 inline-flex items-center text-green-600 font-semibold">
+                    Login Now
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+
+             <a 
+                href="https://kokanglobal.org/warden"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-xl transform hover:scale-105"
+              >
+                <div className="text-center">
+                  <div className="w-24 h-24 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center">
+                    <Shield className="w-12 h-12 text-white" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-gray-900 mb-2">Warden Login</h4>
+                  <p className="text-gray-600 text-sm">Access warden portal</p>
+                  <div className="mt-4 inline-flex items-center text-purple-600 font-semibold">
+                    Login Now
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
-        </a>
-
-        {/* Student Login Card */}
-        <a
-          href="https://kokanglobal.org/student"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200 hover:border-green-400 transition-all hover:shadow-xl transform hover:scale-105"
-        >
-          <div className="text-center">
-            <div className="w-24 h-24 mx-auto mb-4 bg-green-600 rounded-full flex items-center justify-center">
-              <BookOpen className="w-12 h-12 text-white" />
-            </div>
-            <h4 className="text-2xl font-bold text-gray-900 mb-2">Student Login</h4>
-            <p className="text-gray-600 text-sm">Access student portal</p>
-            <div className="mt-4 inline-flex items-center text-green-600 font-semibold">
-              Login Now
-              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-          </div>
-        </a>
-
-        {/* Warden Login Card */}
-
-  <a href="https://kokanglobal.org/warden"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="group relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 hover:border-purple-400 transition-all hover:shadow-xl transform hover:scale-105"
->
-  <div className="text-center">
-    <div className="w-24 h-24 mx-auto mb-4 bg-purple-600 rounded-full flex items-center justify-center">
-      <Shield className="w-12 h-12 text-white" />
+        </div>
+      )}
     </div>
-    <h4 className="text-2xl font-bold text-gray-900 mb-2">Warden Login</h4>
-    <p className="text-gray-600 text-sm">Access warden portal</p>
-    <div className="mt-4 inline-flex items-center text-purple-600 font-semibold">
-      Login Now
-      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-      </svg>
-    </div>
-  </div>
-</a>
-      </div>
-    </div>
-  </div>
-)}
-    </div>
+    
   );
 };
 
