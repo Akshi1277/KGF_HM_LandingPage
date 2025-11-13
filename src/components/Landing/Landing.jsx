@@ -109,47 +109,51 @@ const Landing = () => {
       {/* Navbar */}
 <nav className="bg-white shadow-md fixed w-full top-0 z-50">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex justify-between items-center h-20">
-      <div className="flex items-center space-x-3 sm:space-x-4">
-        {/* Logo */}
+    <div className="flex justify-between items-center h-16 sm:h-20">
+      {/* Logo and Branding */}
+      <div className="flex items-center space-x-2 sm:space-x-4">
         <Image
           src="/kgf_2.svg"
           alt="KGF Logo"
           width={64}
           height={64}
-          className="object-contain w-14 h-14 sm:w-16 sm:h-16"
+          className="object-contain w-10 h-10 sm:w-14 sm:h-14 md:w-16 md:h-16"
           priority
         />
-        {/* Text Branding */}
         <div className="flex flex-col">
-          <div className="flex items-baseline space-x-2">
-            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 via-green-600 to-blue-800 bg-clip-text text-transparent">
+          <div className="flex items-baseline space-x-1 sm:space-x-2">
+            <span className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 via-green-600 to-blue-800 bg-clip-text text-transparent">
               KGF
             </span>
-            <span className="text-base sm:text-lg font-bold text-gray-900">Boys Hostel</span>
+            <span className="text-sm sm:text-base md:text-lg font-bold text-gray-900">Boys Hostel</span>
           </div>
-          <p className="text-[10px] sm:text-xs text-gray-600 leading-tight">Kokan Global Foundation</p>
+          <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-600 leading-tight">Kokan Global Foundation</p>
         </div>
       </div>
-      <div className="hidden md:flex space-x-8">
+
+      {/* Desktop Navigation */}
+      <div className="hidden lg:flex space-x-8">
         <a href="#home" className="text-gray-700 hover:text-blue-600 transition">Home</a>
         <a href="#features" className="text-gray-700 hover:text-blue-600 transition">Features</a>
+        <a href="#facilities" className="text-gray-700 hover:text-blue-600 transition">Facilities</a>
         <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Pricing</a>
         <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
-         <a href="#facilities" className="text-gray-700 hover:text-blue-600 transition">Facilities</a>
       </div>
+
+      {/* Action Buttons */}
       <div className="flex items-center gap-2 sm:gap-3">
         <button
           onClick={() => setIsLoginOpen(true)}
-          className="bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 text-sm sm:text-base"
+          className="bg-gradient-to-r from-green-600 to-green-700 text-white px-2 sm:px-4 md:px-6 py-1.5 sm:py-2 rounded-lg hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 text-xs sm:text-sm md:text-base"
         >
           Login
         </button>
         <button
           onClick={() => setIsInquiryOpen(true)}
-          className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 sm:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-sm sm:text-base"
+          className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-2 sm:px-4 md:px-6 py-1.5 sm:py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 text-xs sm:text-sm md:text-base whitespace-nowrap"
         >
-          Inquiry Now
+          <span className="hidden sm:inline">Inquiry Now</span>
+          <span className="sm:hidden">Inquiry</span>
         </button>
       </div>
     </div>
