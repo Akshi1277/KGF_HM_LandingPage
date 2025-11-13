@@ -136,6 +136,7 @@ const Landing = () => {
         <a href="#features" className="text-gray-700 hover:text-blue-600 transition">Features</a>
         <a href="#pricing" className="text-gray-700 hover:text-blue-600 transition">Pricing</a>
         <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
+         <a href="#facilities" className="text-gray-700 hover:text-blue-600 transition">Facilities</a>
       </div>
       <div className="flex items-center gap-2 sm:gap-3">
         <button
@@ -190,7 +191,7 @@ const Landing = () => {
             <div className="relative mt-6 sm:mt-0">
               <div className="bg-gradient-to-br from-blue-600 to-green-500 rounded-2xl p-4 sm:p-8 shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800"
+                  src="/hostel.jpg"
                   alt="KGF Hostel"
                   className="rounded-lg shadow-lg w-full"
                 />
@@ -202,6 +203,283 @@ const Landing = () => {
           </div>
         </div>
       </section>
+
+      {/* Detailed Features Gallery Section - Add this after the Hero section and before the existing Features section */}
+<section id="facilities" className="py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50">
+  <div className="max-w-7xl mx-auto px-4">
+    {/* Section Header */}
+    <div className="text-center mb-12 sm:mb-16">
+      <div className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+        Explore Our Facilities
+      </div>
+      <h3 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+        World-Class Amenities
+      </h3>
+      <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        Experience comfort and convenience with our modern facilities designed for student success
+      </p>
+      <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-green-500 mx-auto mt-6"></div>
+    </div>
+
+    {/* Features Grid */}
+    <div className="space-y-12 sm:space-y-16">
+      
+     {/* Feature 1: Comfortable Beds - WITH VIDEO */}
+<div className="grid md:grid-cols-2 gap-8 items-center">
+  <div className="order-2 md:order-1">
+    <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white p-3 rounded-lg inline-block mb-4">
+      <Bed className="w-8 h-8" />
+    </div>
+    <h4 className="text-3xl font-bold text-gray-900 mb-4">Comfortable Single Beds</h4>
+    <p className="text-lg text-gray-700 mb-4">
+      Each room features premium quality single beds with orthopedic mattresses ensuring a good night's sleep after a long day of studies. Personal space with individual cupboards for all your belongings.
+    </p>
+    <ul className="space-y-2 text-gray-700">
+      <li className="flex items-center gap-2">
+        <Check className="w-5 h-5 text-green-600" />
+        <span>Orthopedic mattresses for better sleep</span>
+      </li>
+      <li className="flex items-center gap-2">
+        <Check className="w-5 h-5 text-green-600" />
+        <span>Individual storage cupboards</span>
+      </li>
+      <li className="flex items-center gap-2">
+        <Check className="w-5 h-5 text-green-600" />
+        <span>Study table and chair in each room</span>
+      </li>
+    </ul>
+  </div>
+  <div className="order-1 md:order-2">
+    <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+      <iframe
+        src="https://drive.google.com/file/d/18rikIHDXz7Y6xHVoMNe1QQh2zdQ_wGzB/preview?autoplay=1"
+        className="w-full h-80 rounded-2xl"
+        allow="autoplay"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+      {/* Feature 2: Modern Kitchen */}
+      <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+            <img
+              src="/api/placeholder/600/400"
+              alt="Modern Kitchen"
+              className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <p className="text-sm font-semibold">Fully Equipped Kitchen</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="bg-gradient-to-br from-green-500 to-green-600 text-white p-3 rounded-lg inline-block mb-4">
+            <Utensils className="w-8 h-8" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-900 mb-4">Modern Kitchen Facilities</h4>
+          <p className="text-lg text-gray-700 mb-4">
+            Fully equipped common kitchen with microwave, refrigerator, electric hotplate, and washing machine. Cook your favorite meals and maintain hygiene effortlessly.
+          </p>
+          <ul className="space-y-2 text-gray-700">
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Microwave oven for quick meals</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Refrigerator for food storage</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Electric hotplate & washing machine</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Feature 3: Study Room & Library */}
+      <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="order-2 md:order-1">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white p-3 rounded-lg inline-block mb-4">
+            <BookOpen className="w-8 h-8" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-900 mb-4">Dedicated Study Room & Library</h4>
+          <p className="text-lg text-gray-700 mb-4">
+            A peaceful and well-lit study room with library facilities to help you focus on your academic goals. Perfect environment for group studies and individual concentration.
+          </p>
+          <ul className="space-y-2 text-gray-700">
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Quiet study environment</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Reference books and materials</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Extended study hours</span>
+            </li>
+          </ul>
+        </div>
+        <div className="order-1 md:order-2">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+            <img
+              src="/api/placeholder/600/400"
+              alt="Study Room"
+              className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <p className="text-sm font-semibold">Quiet Study Environment</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Feature 4: Recreation & Gym */}
+      <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+            <img
+              src="/api/placeholder/600/400"
+              alt="Gym"
+              className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <p className="text-sm font-semibold">Fitness & Recreation</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="bg-gradient-to-br from-red-500 to-red-600 text-white p-3 rounded-lg inline-block mb-4">
+            <Dumbbell className="w-8 h-8" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-900 mb-4">Recreation Gym & Room</h4>
+          <p className="text-lg text-gray-700 mb-4">
+            Stay fit and healthy with our well-equipped gym and recreation room. Perfect for stress relief and maintaining physical fitness alongside your studies.
+          </p>
+          <ul className="space-y-2 text-gray-700">
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Modern gym equipment</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Indoor games and activities</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Relaxation and entertainment area</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Feature 5: High-Speed WiFi */}
+      <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="order-2 md:order-1">
+          <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 text-white p-3 rounded-lg inline-block mb-4">
+            <Wifi className="w-8 h-8" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-900 mb-4">High-Speed WiFi & Inverter Backup</h4>
+          <p className="text-lg text-gray-700 mb-4">
+            Stay connected 24/7 with high-speed WiFi throughout the hostel. Uninterrupted power supply with inverter backup ensures you never miss important online classes or deadlines.
+          </p>
+          <ul className="space-y-2 text-gray-700">
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Unlimited high-speed internet</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Power backup with inverters</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>No electricity outage concerns</span>
+            </li>
+          </ul>
+        </div>
+        <div className="order-1 md:order-2">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+            <img
+              src="/api/placeholder/600/400"
+              alt="WiFi and Internet"
+              className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <p className="text-sm font-semibold">24/7 Connectivity</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Feature 6: Security & CCTV */}
+      <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+            <img
+              src="/api/placeholder/600/400"
+              alt="Security System"
+              className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <p className="text-sm font-semibold">Complete Security</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-3 rounded-lg inline-block mb-4">
+            <Camera className="w-8 h-8" />
+          </div>
+          <h4 className="text-3xl font-bold text-gray-900 mb-4">Complete CCTV Surveillance</h4>
+          <p className="text-lg text-gray-700 mb-4">
+            Your safety is our priority. Complete CCTV surveillance, dedicated security guards, and experienced wardens ensure a secure living environment 24/7.
+          </p>
+          <ul className="space-y-2 text-gray-700">
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>24/7 CCTV monitoring</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Dedicated security personnel</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-5 h-5 text-green-600" />
+              <span>Experienced warden supervision</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    {/* Call to Action */}
+    <div className="mt-16 text-center bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-12 shadow-2xl">
+      <h4 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+        Ready to Experience Premium Living?
+      </h4>
+      <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        Book your seat now and enjoy 30% discount on our grand opening
+      </p>
+      <button
+        onClick={() => setIsInquiryOpen(true)}
+        className="bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-50 transition transform hover:scale-105 shadow-xl"
+      >
+        Book Your Seat Now
+      </button>
+    </div>
+  </div>
+</section>
 
       {/* Features Section */}
       <section id="features" className="py-12 sm:py-16 bg-white">
